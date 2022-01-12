@@ -30,7 +30,7 @@ def index():
 def tilt_value_from(pan_value):
     try:
         pantilthat.pan(int(pan_value))
-        return str(tilt_value)
+        return str(pan_value)
     except ValueError:
         return "invalid input"
 
@@ -39,7 +39,7 @@ def pan_value_from(tilt_value):
     """Convert tilt_value to Celius degrees."""
     try:
         pantilthat.tilt(int(tilt_value))
-        return str(pan_value)
+        return str(tilt_value)
     except ValueError:
         return "invalid input"
 
