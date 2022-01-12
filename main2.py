@@ -7,44 +7,39 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    celsius = request.args.get("celsius", "")
-    fahrenheit = request.args.get("fahrenheit", "")
-    if celsius:
-        fahrenheit = fahrenheit_from(celsius)
-    if fahrenheit:
-        celsius = celsius_from(fahrenheit)
+    pan_value = request.args.get("pan_value", "")
+    tilt_value = request.args.get("tilt_value", "")
+    if pan_value:
+        tilt_value = tilt_value_from(pan_value)
+    if tilt_value:
+        pan_value = pan_value_from(tilt_value)
     return (
         """<form action="" method="get">
-                Celsius temperature: <input type="text" name="celsius">
-                Fahrenheit temperature: <input type="text" name="fahrenheit">
-                <input type="submit" value="Convert">
+                pan_value: <input type="text" name="pan_value">
+                tilt_value: <input type="text" name="tilt_value">
+                <input type="submit" value="Activate">
             </form>"""
-        + "Fahrenheit: "
-        + fahrenheit
+        + "tilt_value: "
+        + tilt_value
         + " "
-        + "Celsius: "
-        + celsius
+        + "pan_value: "
+        + pan_value
     )
 
 
-def fahrenheit_from(celsius):
-    """Convert Celsius to Fahrenheit degrees."""
+def tilt_value_from(pan_value):
     try:
-        pantilthat.pan(int(celsius))
-        fahrenheit = float(celsius) * 9 / 5 + 32
-        fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
-        return str(fahrenheit)
+        pantilthat.pan(int(pan_value))
+        return str(tilt_value)
     except ValueError:
         return "invalid input"
 
 
-def celsius_from(fahrenheit):
-    """Convert Fahrenheit to Celius degrees."""
+def pan_value_from(tilt_value):
+    """Convert tilt_value to Celius degrees."""
     try:
-        pantilthat.tilt(int(fahrenheit))
-        celsius = (float(fahrenheit) - 32) * 5 / 9
-        celsius = round(celsius, 3)  # Round to three decimal places
-        return str(celsius)
+        pantilthat.tilt(int(tilt_value))
+        return str(pan_value)
     except ValueError:
         return "invalid input"
 
