@@ -30,7 +30,7 @@ def index():
 def fahrenheit_from(celsius):
     """Convert Celsius to Fahrenheit degrees."""
     try:
-        pantilthat.pan(celsius)
+        pantilthat.pan(int(celsius))
         fahrenheit = float(celsius) * 9 / 5 + 32
         fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
         return str(fahrenheit)
@@ -41,7 +41,7 @@ def fahrenheit_from(celsius):
 def celsius_from(fahrenheit):
     """Convert Fahrenheit to Celius degrees."""
     try:
-        pantilthat.tilt(fahrenheit)
+        pantilthat.tilt(int(fahrenheit))
         celsius = (float(fahrenheit) - 32) * 5 / 9
         celsius = round(celsius, 3)  # Round to three decimal places
         return str(celsius)
@@ -50,4 +50,4 @@ def celsius_from(fahrenheit):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="192.168.0.20", port=8080, debug=True)
